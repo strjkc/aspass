@@ -5,7 +5,11 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class InputPane extends JComponent {
-   public JPanel contentPannel;
+   private JPanel contentPannel;
+
+    public JPanel getContentPannel() {
+        return contentPannel;
+    }
 
     public InputPane(){
         contentPannel = new JPanel();

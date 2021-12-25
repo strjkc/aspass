@@ -8,8 +8,13 @@ import java.awt.event.ActionListener;
 import java.util.List;
 
 public class Dialog extends JDialog {
-   public JDialog modelDialog;
+   private JDialog modelDialog;
     JButton addHost;
+
+    public JDialog getModelDialog() {
+        return modelDialog;
+    }
+
     public Dialog(JFrame frame){
         modelDialog = new JDialog(frame, "Swing Tester",
                 Dialog.ModalityType.DOCUMENT_MODAL);
