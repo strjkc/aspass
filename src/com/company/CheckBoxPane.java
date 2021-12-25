@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CheckBoxPane extends JComponent {
-    List<JCheckBox> checkBoxList = new ArrayList<>();
     JButton paneButtonMain;
     JLabel paneTitle;
     GridBagConstraints titleContraint;
@@ -45,10 +44,20 @@ public class CheckBoxPane extends JComponent {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                System.out.println("Adding host");
                 //ubacuj u array hostnameove
                 dial.setVisible(true);
+                for(int i = 0; i < State.checks.size(); i++){
+                    GridBagConstraints k = new GridBagConstraints();
+                    k.anchor = GridBagConstraints.WEST;
+                    k.gridx = 0;
+                    k.gridy = i + 1;
+                    contentPannel.add(State.checks.get(i), k);
+                }
+                buttonContraints.gridy += 1;
+                contentPannel.add(paneButtonMain,buttonContraints);
 
+                contentPannel.revalidate();
+                contentPannel.repaint();
 
             }
         });

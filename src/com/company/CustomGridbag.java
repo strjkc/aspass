@@ -15,4 +15,5 @@ public class CustomGridbag extends GridBagConstraints {
     public GridBagConstraints getContraints(){
         return k;
     }
+    public void setConstraints(int y){k.gridy = y;}
 }

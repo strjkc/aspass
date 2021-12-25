@@ -13,28 +13,16 @@ import java.util.List;
 
 public class Main {
 
-    public static List<JCheckBox> checks = new ArrayList<JCheckBox>();
     public static JPanel contentPannel;
     public static JFrame frame;
 
-public static void addElement(){
-    JCheckBox box = new JCheckBox("asdfasdfasdf");
-    System.out.println("Drawing");
-    GridBagConstraints k = new GridBagConstraints();
-    k.anchor = GridBagConstraints.WEST;
-    k.gridx = 0;
-    k.gridy = checks.size() + 1;
-    checks.add(box);
-    contentPannel.add(checks.get(0), k);
-}
+
     public static void main(String[] args) throws AS400SecurityException, IOException, InterruptedException, ErrorCompletingRequestException {
 	// write your code here
         final String[] user = new String[1];
         final String[] passwordLogin = new String[1];
         String passToSet;
         String hosts[] = new String[1];
-        final boolean[] isAddHostVisible = {false};
-        List<JCheckBox> checkBoxList = new ArrayList<>();
 
 
         frame = new JFrame();

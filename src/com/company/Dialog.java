@@ -5,11 +5,11 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class Dialog extends JDialog {
    public JDialog modelDialog;
     JButton addHost;
-
     public Dialog(JFrame frame){
         modelDialog = new JDialog(frame, "Swing Tester",
                 Dialog.ModalityType.DOCUMENT_MODAL);
@@ -38,16 +38,24 @@ public class Dialog extends JDialog {
 
         modelDialog.setContentPane(panel1);
 
-    }
-
-    public void func() {
         addHost.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //ubacuj u array hostnameove
-                //addElement();
-                //frame.revalidate();
+                System.out.println("XXXXX");
+                addElement();
+                modelDialog.setVisible(false);
+                modelDialog.dispose();
             }
         });
+
     }
+
+    public void addElement(){
+        JCheckBox box = new JCheckBox("asdfasdfasdf");
+        System.out.println("Drawing");
+
+        State.checks.add(box);
+    }
+
+
 }
