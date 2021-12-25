@@ -1,0 +1,71 @@
+package com.company;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
+public class CheckBoxPane extends JComponent {
+    List<JCheckBox> checkBoxList = new ArrayList<>();
+    JButton paneButtonMain;
+    JLabel paneTitle;
+    GridBagConstraints titleContraint;
+    JPanel contentPannel;
+
+    public JPanel getContentPannel() {
+        return contentPannel;
+    }
+
+    GridBagConstraints buttonContraints;
+    public CheckBoxPane(String paneTitle, String mainButtonTitle){
+        contentPannel = new JPanel();
+
+        //top 20 je hak da bude u ravni sa prvim input poljem, popraviti.
+        contentPannel.setBorder(new EmptyBorder(20,0,0,0));
+        GridBagLayout gblContentPane = new GridBagLayout();
+        gblContentPane.columnWidths = new int[]{100};
+        gblContentPane.rowHeights = new int[]{30, 30, 30, 30, 30, 30, 30, 30, 30, 30};
+        gblContentPane.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+        gblContentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
+        contentPannel.setLayout(gblContentPane);
+
+        this.paneTitle = new JLabel(paneTitle);
+        titleContraint = new CustomGridbag(0,0, GridBagConstraints.WEST).getContraints();
+        contentPannel.add(this.paneTitle, titleContraint);
+        paneButtonMain = new JButton("Add new host");
+        buttonContraints = new CustomGridbag(0, 1, GridBagConstraints.CENTER).getContraints();
+        contentPannel.add(paneButtonMain,buttonContraints);
+
+
+        //submit action
+        paneButtonMain.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                System.out.println("Adding host");
+                //ubacuj u array hostnameove
+
+            }
+        });
+
+    }
+
+    public JButton getPaneButtonMain() {
+        return paneButtonMain;
+    }
+
+    public JLabel getPaneTitle() {
+        return paneTitle;
+    }
+
+    public GridBagConstraints getTitleContraint() {
+        return titleContraint;
+    }
+
+    public GridBagConstraints getButtonContraints() {
+        return buttonContraints;
+    }
+}

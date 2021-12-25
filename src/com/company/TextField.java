@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class TextField extends JComponent {
     private JLabel label;
-    private JTextField inputField;
+    public JTextField inputField;
     private GridBagConstraints labelConstraints;
     private GridBagConstraints inputFieldContraints;
 
@@ -16,6 +16,7 @@ public class TextField extends JComponent {
         labelConstraints.insets = new Insets(0,0, 0,0);
         labelConstraints.gridx = xPosition;
         labelConstraints.gridy = yPosition;
+        labelConstraints.fill = GridBagConstraints.HORIZONTAL;
 
 
         inputField = new JTextField();
@@ -26,6 +27,7 @@ public class TextField extends JComponent {
         inputFieldContraints.gridx = xPosition;
         inputFieldContraints.ipady = 5;
         inputFieldContraints.gridy = yPosition + 1;
+        inputFieldContraints.fill = GridBagConstraints.HORIZONTAL;
     }
 
     public TextField(String label, int xPosition, int yPosition,
