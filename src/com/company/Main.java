@@ -27,45 +27,6 @@ public static void addElement(){
     checks.add(box);
     contentPannel.add(checks.get(0), k);
 }
-
-    private static JDialog createDialog(final JFrame frame1) {
-        final JDialog modelDialog = new JDialog(frame1, "Swing Tester",
-                Dialog.ModalityType.DOCUMENT_MODAL);
-        modelDialog.setBounds(132, 132, 300, 200);
-        JPanel panel1 = new JPanel();
-        panel1.setBorder(new EmptyBorder(0,40,0,40));
-        Container dialogContainer = modelDialog.getContentPane();
-        GridBagLayout gblContentPane = new GridBagLayout();
-        gblContentPane.columnWidths = new int[]{100};
-        gblContentPane.rowHeights = new int[]{30, 30, 30};
-        gblContentPane.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-        gblContentPane.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
-        panel1.setLayout(gblContentPane);
-        TextField t = new TextField("FFF", 0, 0);
-        panel1.add(t.getLabel(), t.getLabelConstraints());
-        panel1.add(t.getInputField(), t.getInputFieldContraints());
-
-        JButton addHost = new JButton("Add");
-        GridBagConstraints x = new GridBagConstraints();
-        x.anchor = GridBagConstraints.CENTER;
-        x.insets = new Insets(0,0, 0,0);
-        x.gridx = 0;
-        x.gridy = 2;
-        panel1.add(addHost, x);
-
-        addHost.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //ubacuj u array hostnameove
-                addElement();
-                frame.revalidate();
-            }
-        });
-
-        modelDialog.setContentPane(panel1);
-
-        return modelDialog;
-    }
     public static void main(String[] args) throws AS400SecurityException, IOException, InterruptedException, ErrorCompletingRequestException {
 	// write your code here
         final String[] user = new String[1];
@@ -88,9 +49,9 @@ public static void addElement(){
         gblContentPane.rowWeights = new double[]{0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Double.MIN_VALUE};
         contentPannel.setLayout(gblContentPane);
 
-        System.out.println(checks.size());
+        Dialog dial = new Dialog(frame);
 
-        CheckBoxPane paney = new CheckBoxPane("Available Hosts: ", "Add Host");
+        CheckBoxPane paney = new CheckBoxPane("Available Hosts: ", "Add Host", dial.modelDialog);
         GridBagConstraints x = new GridBagConstraints();
         x.anchor = GridBagConstraints.WEST;
         //x.fill = GridBagConstraints.HORIZONTAL;
@@ -115,7 +76,6 @@ public static void addElement(){
         frame.setContentPane(contentPannel);
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
-
 
        /* AS400ConnectionPool server = new AS400ConnectionPool();
         AS400 newCon = null;

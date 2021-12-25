@@ -20,7 +20,7 @@ public class CheckBoxPane extends JComponent {
     }
 
     GridBagConstraints buttonContraints;
-    public CheckBoxPane(String paneTitle, String mainButtonTitle){
+    public CheckBoxPane(String paneTitle, String mainButtonTitle, JDialog dial){
         contentPannel = new JPanel();
 
         //top 20 je hak da bude u ravni sa prvim input poljem, popraviti.
@@ -47,11 +47,17 @@ public class CheckBoxPane extends JComponent {
 
                 System.out.println("Adding host");
                 //ubacuj u array hostnameove
+                dial.setVisible(true);
+
 
             }
         });
 
+
     }
+
+
+
 
     public JButton getPaneButtonMain() {
         return paneButtonMain;
