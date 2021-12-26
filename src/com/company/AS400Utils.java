@@ -7,8 +7,8 @@ public class AS400Utils {
 
     public static void changeAsPass(String host, String uname, String loginPass, String newPass){
         try {
-            AS400 newCon = new AS400("PUB400.COM", "SJOKIC", "strahi9293");
-            newCon.changePassword("Sljakomv1", "strahi9293");
+            AS400 newCon = new AS400(host, uname, loginPass);
+            newCon.changePassword(loginPass, newPass);
         }catch (Exception e) {
             e.printStackTrace();
         }

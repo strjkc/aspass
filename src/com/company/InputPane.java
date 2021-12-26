@@ -24,19 +24,19 @@ public class InputPane extends JComponent {
         contentPannel.setLayout(gblContentPane);
 
         //The first element has FIRST_LINE_START anchor only su it aligns with the cb pane while maintaining good spacing
-        TextField usernameTextField = new TextField("Username:", 0, 0, GridBagConstraints.FIRST_LINE_START);
+        TextField usernameTextField = new TextField("Username:", 0, 0, GridBagConstraints.FIRST_LINE_START, false);
         contentPannel.add(usernameTextField.getLabel(), usernameTextField.getLabelConstraints());
         contentPannel.add(usernameTextField.getInputField(), usernameTextField.getInputFieldContraints());
 
-        TextField passwordTextField = new TextField("Current Password:", 0, 2, GridBagConstraints.LINE_START);
+        TextField passwordTextField = new TextField("Current Password:", 0, 2, GridBagConstraints.LINE_START, true);
         contentPannel.add(passwordTextField.getLabel(), passwordTextField.getLabelConstraints());
         contentPannel.add(passwordTextField.getInputField(), passwordTextField.getInputFieldContraints());
 
-        TextField newPasswordTextField = new TextField("New Password:", 0, 4, GridBagConstraints.LINE_START);
+        TextField newPasswordTextField = new TextField("New Password:", 0, 4, GridBagConstraints.LINE_START, true);
         contentPannel.add(newPasswordTextField.getLabel(), newPasswordTextField.getLabelConstraints());
         contentPannel.add(newPasswordTextField.getInputField(), newPasswordTextField.getInputFieldContraints());
 
-        TextField repeatNewPasswordTextField = new TextField("Repeat New Password:", 0, 6, GridBagConstraints.LINE_START);
+        TextField repeatNewPasswordTextField = new TextField("Repeat New Password:", 0, 6, GridBagConstraints.LINE_START, true);
         contentPannel.add(repeatNewPasswordTextField.getLabel(), repeatNewPasswordTextField.getLabelConstraints());
         contentPannel.add(repeatNewPasswordTextField.getInputField(), repeatNewPasswordTextField.getInputFieldContraints());
 

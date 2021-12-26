@@ -9,7 +9,7 @@ public class TextField extends JComponent {
     private GridBagConstraints labelConstraints;
     private GridBagConstraints inputFieldContraints;
 
-    public TextField(String label, int xPosition, int yPosition, int anchor){
+    public TextField(String label, int xPosition, int yPosition, int anchor, boolean isPassField){
         this.label = new JLabel(label);
         labelConstraints = new GridBagConstraints();
         labelConstraints.anchor = anchor;
@@ -17,8 +17,13 @@ public class TextField extends JComponent {
         labelConstraints.gridy = yPosition;
         labelConstraints.fill = GridBagConstraints.HORIZONTAL;
 
+        if(isPassField) {
+            inputField = new JPasswordField();
 
-        inputField = new JTextField();
+        }else{
+            inputField = new JTextField();
+        }
+
         inputFieldContraints = new GridBagConstraints();
         inputFieldContraints.anchor = anchor;
         inputFieldContraints.gridx = xPosition;
@@ -26,6 +31,7 @@ public class TextField extends JComponent {
         inputFieldContraints.gridy = yPosition + 1;
         inputFieldContraints.fill = GridBagConstraints.HORIZONTAL;
     }
+
 
     public TextField(String label, int xPosition, int yPosition,
                      int insetTop, int insetLeft, int insetBottom, int insetRight){

@@ -1,7 +1,5 @@
 package com.company;
 
-import com.ibm.as400.access.*;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -31,7 +29,7 @@ public class Main {
 
         //Get panels from child objects
         JDialog hostModal = new Dialog(frame)
-                .getModelDialog();
+                .getModalDialog();
         JPanel checkBoxPanePanel = new CheckBoxPane("Available Hosts: ", "Add Host", hostModal)
                 .getContentPannel();
         JPanel inputPanel = new InputPane()
