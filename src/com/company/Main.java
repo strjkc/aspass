@@ -11,17 +11,16 @@ public class Main {
     public static void main(String[] args){
 
         //Setup frame and parent layout
-        JFrame frame = new JFrame();
-        frame.setTitle("Password manager");
-        frame.setBounds(0, 0, 600, 400);
-        JPanel contentPannel = new JPanel();
-        contentPannel.setBorder(new EmptyBorder(0,40,0,40));
+        JFrame frame = new JFrame("\"Password manager\"");
+        frame.setBounds(100, 100, 600, 400);
+        JPanel contentPanel = new JPanel();
+        contentPanel.setBorder(new EmptyBorder(0,40,0,40));
         GridBagLayout gblContentPane = new GridBagLayout();
         gblContentPane.columnWidths = new int[]{300, 300};
         gblContentPane.rowHeights = new int[]{400};
         gblContentPane.columnWeights = new double[]{0.4, 1.0, Double.MIN_VALUE};
-        gblContentPane.rowWeights = new double[]{0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Double.MIN_VALUE};
-        contentPannel.setLayout(gblContentPane);
+        gblContentPane.rowWeights = new double[]{1.0, Double.MIN_VALUE};
+        contentPanel.setLayout(gblContentPane);
 
         //setup constraints for child elements in parent
         GridBagConstraints checkboxPaneConstraints = new CustomGridbag(0,0, GridBagConstraints.WEST)
@@ -38,10 +37,9 @@ public class Main {
         JPanel inputPanel = new InputPane()
                 .getContentPannel();
 
-
-        contentPannel.add(checkBoxPanePanel, checkboxPaneConstraints);
-        contentPannel.add(inputPanel, inputPaneConstraints);
-        frame.setContentPane(contentPannel);
+        contentPanel.add(checkBoxPanePanel, checkboxPaneConstraints);
+        contentPanel.add(inputPanel, inputPaneConstraints);
+        frame.setContentPane(contentPanel);
         frame.setVisible(true);
     }
 }
