@@ -36,10 +36,16 @@ public class CheckBoxPane extends JComponent {
                 .getContraints();
         contentPannel.add(this.paneTitle, titleContraint);
         paneButtonMain = new JButton("Add new host");
-        buttonContraints = new CustomGridbag(0, 1, GridBagConstraints.CENTER)
+        buttonContraints = new CustomGridbag(0, State.checks.size() + 1, GridBagConstraints.CENTER)
                 .getContraints();
         contentPannel.add(paneButtonMain,buttonContraints);
-
+        for(int i = 0; i < State.checks.size(); i++){
+            GridBagConstraints k = new GridBagConstraints();
+            k.anchor = GridBagConstraints.WEST;
+            k.gridx = 0;
+            k.gridy = i + 1;
+            contentPannel.add(State.checks.get(i), k);
+        }
 
         //submit action
         paneButtonMain.addActionListener(new ActionListener() {

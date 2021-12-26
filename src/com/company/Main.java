@@ -19,7 +19,7 @@ public class Main {
         gblContentPane.columnWeights = new double[]{0.4, 1.0, Double.MIN_VALUE};
         gblContentPane.rowWeights = new double[]{1.0, Double.MIN_VALUE};
         contentPanel.setLayout(gblContentPane);
-
+State.loadState();
         //setup constraints for child elements in parent
         GridBagConstraints checkboxPaneConstraints = new CustomGridbag(0,0, GridBagConstraints.FIRST_LINE_START)
                 .getContraints();

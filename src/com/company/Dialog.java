@@ -5,6 +5,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
 
 public class Dialog extends JDialog {
     private JDialog modalDialog;
@@ -45,9 +47,23 @@ public class Dialog extends JDialog {
     public void addElement(){
         JCheckBox box = new JCheckBox(dialogField.getInputField().getText());
         State.checks.add(box);
+        writeToFile(box.getText());
     }
 
     public JDialog getModalDialog() {
         return modalDialog;
+    }
+
+    public void writeToFile(String host){
+        try {
+            File file = new File("hosts.txt");
+            FileWriter fileWriter = new FileWriter("hosts.txt", true);
+
+            file.createNewFile();
+            fileWriter.append(host + "\n");
+            fileWriter.close();
+        }catch(Exception e){
+            System.out.println(e);
+        }
     }
 }
