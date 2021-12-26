@@ -32,10 +32,12 @@ public class CheckBoxPane extends JComponent {
         contentPannel.setLayout(gblContentPane);
 
         this.paneTitle = new JLabel(paneTitle);
-        titleContraint = new CustomGridbag(0,0, GridBagConstraints.WEST).getContraints();
+        titleContraint = new CustomGridbag(0,0, GridBagConstraints.WEST)
+                .getContraints();
         contentPannel.add(this.paneTitle, titleContraint);
         paneButtonMain = new JButton("Add new host");
-        buttonContraints = new CustomGridbag(0, 1, GridBagConstraints.CENTER).getContraints();
+        buttonContraints = new CustomGridbag(0, 1, GridBagConstraints.CENTER)
+                .getContraints();
         contentPannel.add(paneButtonMain,buttonContraints);
 
 

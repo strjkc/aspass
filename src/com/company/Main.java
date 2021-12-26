@@ -24,18 +24,11 @@ public class Main {
         contentPannel.setLayout(gblContentPane);
 
         //setup constraints for child elements in parent
-        GridBagConstraints checkboxPaneConstraints = new GridBagConstraints();
-        checkboxPaneConstraints.anchor = GridBagConstraints.WEST;
-        checkboxPaneConstraints.insets = new Insets(0,0, 0,0);
-        checkboxPaneConstraints.gridx = 0;
-        checkboxPaneConstraints.gridy = 0;
+        GridBagConstraints checkboxPaneConstraints = new CustomGridbag(0,0, GridBagConstraints.WEST)
+                .getContraints();
 
-        GridBagConstraints inputPaneConstraints = new GridBagConstraints();
-        inputPaneConstraints.anchor = GridBagConstraints.WEST;
-        inputPaneConstraints.fill = GridBagConstraints.HORIZONTAL;
-        inputPaneConstraints.insets = new Insets(0,0, 0,0);
-        inputPaneConstraints.gridx = 1;
-        inputPaneConstraints.gridy = 0;
+        GridBagConstraints inputPaneConstraints = new CustomGridbag(1, 0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL)
+                .getContraints();
 
         //Get panels from child objects
         JDialog hostModal = new Dialog(frame)
