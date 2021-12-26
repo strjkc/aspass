@@ -9,11 +9,10 @@ public class TextField extends JComponent {
     private GridBagConstraints labelConstraints;
     private GridBagConstraints inputFieldContraints;
 
-    public TextField(String label, int xPosition, int yPosition){
+    public TextField(String label, int xPosition, int yPosition, int anchor){
         this.label = new JLabel(label);
         labelConstraints = new GridBagConstraints();
-        labelConstraints.anchor = GridBagConstraints.WEST;
-        labelConstraints.insets = new Insets(0,0, 0,0);
+        labelConstraints.anchor = anchor;
         labelConstraints.gridx = xPosition;
         labelConstraints.gridy = yPosition;
         labelConstraints.fill = GridBagConstraints.HORIZONTAL;
@@ -21,8 +20,7 @@ public class TextField extends JComponent {
 
         inputField = new JTextField();
         inputFieldContraints = new GridBagConstraints();
-        inputFieldContraints.anchor = GridBagConstraints.WEST;
-        inputFieldContraints.insets = new Insets(0,0, 0,0);
+        inputFieldContraints.anchor = anchor;
         inputFieldContraints.gridx = xPosition;
         inputFieldContraints.ipady = 5;
         inputFieldContraints.gridy = yPosition + 1;

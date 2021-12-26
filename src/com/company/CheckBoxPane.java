@@ -26,13 +26,13 @@ public class CheckBoxPane extends JComponent {
         contentPannel.setBorder(new EmptyBorder(0,0,0,0));
         GridBagLayout gblContentPane = new GridBagLayout();
         gblContentPane.columnWidths = new int[]{100};
-        gblContentPane.rowHeights = new int[]{30, 30, 30, 30, 30, 30, 30, 30, 30, 30};
+        gblContentPane.rowHeights = new int[]{30, 30, 30, 30, 30, 30, 30, 30, 30};
         gblContentPane.columnWeights = new double[]{0.0, Double.MIN_VALUE};
         gblContentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
         contentPannel.setLayout(gblContentPane);
 
         this.paneTitle = new JLabel(paneTitle);
-        titleContraint = new CustomGridbag(0,0, GridBagConstraints.WEST)
+        titleContraint = new CustomGridbag(0,0, GridBagConstraints.FIRST_LINE_START)
                 .getContraints();
         contentPannel.add(this.paneTitle, titleContraint);
         paneButtonMain = new JButton("Add new host");

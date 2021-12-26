@@ -11,10 +11,10 @@ public class Main {
     public static void main(String[] args){
 
         //Setup frame and parent layout
-        JFrame frame = new JFrame("\"Password manager\"");
-        frame.setBounds(100, 100, 600, 400);
+        JFrame frame = new JFrame("Password manager");
+        frame.setBounds(400, 200, 600, 400);
         JPanel contentPanel = new JPanel();
-        contentPanel.setBorder(new EmptyBorder(0,40,0,40));
+        contentPanel.setBorder(new EmptyBorder(20,40,20,40));
         GridBagLayout gblContentPane = new GridBagLayout();
         gblContentPane.columnWidths = new int[]{300, 300};
         gblContentPane.rowHeights = new int[]{400};
@@ -36,6 +36,7 @@ public class Main {
                 .getContentPannel();
         JPanel inputPanel = new InputPane()
                 .getContentPannel();
+
 
         contentPanel.add(checkBoxPanePanel, checkboxPaneConstraints);
         contentPanel.add(inputPanel, inputPaneConstraints);

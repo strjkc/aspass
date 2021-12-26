@@ -28,7 +28,7 @@ public class Dialog extends JDialog {
         gblContentPane.columnWeights = new double[]{1.0, Double.MIN_VALUE};
         gblContentPane.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
         panel1.setLayout(gblContentPane);
-        TextField t = new TextField("FFF", 0, 0);
+        TextField t = new TextField("FFF", 0, 0, GridBagConstraints.LINE_START);
         panel1.add(t.getLabel(), t.getLabelConstraints());
         panel1.add(t.getInputField(), t.getInputFieldContraints());
 

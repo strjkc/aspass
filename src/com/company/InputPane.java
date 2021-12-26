@@ -22,19 +22,19 @@ public class InputPane extends JComponent {
         contentPannel.setLayout(gblContentPane);
 
 
-        TextField usernameTextField = new TextField("Username:", 0, 0);
+        TextField usernameTextField = new TextField("Username:", 0, 0, GridBagConstraints.FIRST_LINE_START);
         contentPannel.add(usernameTextField.getLabel(), usernameTextField.getLabelConstraints());
         contentPannel.add(usernameTextField.getInputField(), usernameTextField.getInputFieldContraints());
 
-        TextField passwordTextField = new TextField("Current Password:", 0, 2);
+        TextField passwordTextField = new TextField("Current Password:", 0, 2, GridBagConstraints.LINE_START);
         contentPannel.add(passwordTextField.getLabel(), passwordTextField.getLabelConstraints());
         contentPannel.add(passwordTextField.getInputField(), passwordTextField.getInputFieldContraints());
 
-        TextField newPasswordTextField = new TextField("New Password:", 0, 4);
+        TextField newPasswordTextField = new TextField("New Password:", 0, 4, GridBagConstraints.LINE_START);
         contentPannel.add(newPasswordTextField.getLabel(), newPasswordTextField.getLabelConstraints());
         contentPannel.add(newPasswordTextField.getInputField(), newPasswordTextField.getInputFieldContraints());
 
-        TextField repeatNewPasswordTextField = new TextField("Repeat New Password:", 0, 6);
+        TextField repeatNewPasswordTextField = new TextField("Repeat New Password:", 0, 6, GridBagConstraints.LINE_START);
         contentPannel.add(repeatNewPasswordTextField.getLabel(), repeatNewPasswordTextField.getLabelConstraints());
         contentPannel.add(repeatNewPasswordTextField.getInputField(), repeatNewPasswordTextField.getInputFieldContraints());
 
