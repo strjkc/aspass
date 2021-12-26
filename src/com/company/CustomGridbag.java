@@ -19,4 +19,8 @@ public class CustomGridbag extends GridBagConstraints {
         k.anchor = anchor;
         k.fill = fill;
     }
+
+    public GridBagConstraints getContraints(){
+        return k;
+    }
 }
