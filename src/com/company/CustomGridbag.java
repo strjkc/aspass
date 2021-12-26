@@ -12,8 +12,11 @@ public class CustomGridbag extends GridBagConstraints {
         k.anchor = anchor;
     }
 
-    public GridBagConstraints getContraints(){
-        return k;
+    public CustomGridbag(int positionX, int positionY, int anchor, int fill ){
+        k = new GridBagConstraints();
+        k.gridx = positionX;
+        k.gridy = positionY;
+        k.anchor = anchor;
+        k.fill = fill;
     }
-    public void setConstraints(int y){k.gridy = y;}
 }
