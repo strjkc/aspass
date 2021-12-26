@@ -23,10 +23,10 @@ public class Main {
         contentPanel.setLayout(gblContentPane);
 
         //setup constraints for child elements in parent
-        GridBagConstraints checkboxPaneConstraints = new CustomGridbag(0,0, GridBagConstraints.WEST)
+        GridBagConstraints checkboxPaneConstraints = new CustomGridbag(0,0, GridBagConstraints.FIRST_LINE_START)
                 .getContraints();
 
-        GridBagConstraints inputPaneConstraints = new CustomGridbag(1, 0, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL)
+        GridBagConstraints inputPaneConstraints = new CustomGridbag(1, 0, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL)
                 .getContraints();
 
         //Get panels from child objects

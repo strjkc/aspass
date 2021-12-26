@@ -22,7 +22,6 @@ public class TextField extends JComponent {
         inputField = new JTextField();
         inputFieldContraints = new GridBagConstraints();
         inputFieldContraints.anchor = GridBagConstraints.WEST;
-        inputFieldContraints.fill = GridBagConstraints.HORIZONTAL;
         inputFieldContraints.insets = new Insets(0,0, 0,0);
         inputFieldContraints.gridx = xPosition;
         inputFieldContraints.ipady = 5;

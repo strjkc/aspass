@@ -23,7 +23,7 @@ public class CheckBoxPane extends JComponent {
         contentPannel = new JPanel();
 
         //top 20 je hak da bude u ravni sa prvim input poljem, popraviti.
-        contentPannel.setBorder(new EmptyBorder(20,0,0,0));
+        contentPannel.setBorder(new EmptyBorder(0,0,0,0));
         GridBagLayout gblContentPane = new GridBagLayout();
         gblContentPane.columnWidths = new int[]{100};
         gblContentPane.rowHeights = new int[]{30, 30, 30, 30, 30, 30, 30, 30, 30, 30};
