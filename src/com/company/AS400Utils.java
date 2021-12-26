@@ -1,17 +1,16 @@
 package com.company;
 
+import com.ibm.as400.access.AS400;
+import com.ibm.as400.access.CommandCall;
+
 public class AS400Utils {
 
-           /* AS400ConnectionPool server = new AS400ConnectionPool();
-        AS400 newCon = null;
+    public static void changeAsPass(String host, String uname, String loginPass, String newPass){
         try {
-            newCon = new AS400("PUB400.COM", "SJOKIC", "strahi9293");
+            AS400 newCon = new AS400("PUB400.COM", "SJOKIC", "strahi9293");
+            newCon.changePassword("Sljakomv1", "strahi9293");
         }catch (Exception e) {
             e.printStackTrace();
         }
-        CommandCall cmd = new CommandCall(newCon, "dsplibl");
-        cmd.run();
-        //newCon.changePassword("Sljakomv1", "strahi9293");
-
-        */
+    }
 }

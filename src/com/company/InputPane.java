@@ -59,7 +59,13 @@ public class InputPane extends JComponent {
                 if(uname.length() < 1 || pass.length() < 1 || newPass.length() < 1 || repeatedPass.length() < 1){
                     System.out.println("Passwords don't match");
                 }else {
-                    //Connect to AS
+                    //get all checked boxes
+                    for(int i = 0; i < State.checks.size(); i++){
+                        if(State.checks.get(i).isSelected()){
+                            //connect to AS for each host in state
+                            AS400Utils.changeAsPass(State.checks.get(i).getText(), uname, pass, newPass);
+                        }
+                    }
                 }
             }
         });
