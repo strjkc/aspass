@@ -60,7 +60,7 @@ public class Dialog extends JDialog {
             FileWriter fileWriter = new FileWriter("hosts.txt", true);
 
             file.createNewFile();
-            fileWriter.append(host + "\n");
+            fileWriter.append(host + ",");
             fileWriter.close();
         }catch(Exception e){
             System.out.println(e);

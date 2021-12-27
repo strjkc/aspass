@@ -39,13 +39,7 @@ public class CheckBoxPane extends JComponent {
         buttonContraints = new CustomGridbag(0, State.checks.size() + 1, GridBagConstraints.CENTER)
                 .getContraints();
         contentPannel.add(paneButtonMain,buttonContraints);
-        for(int i = 0; i < State.checks.size(); i++){
-            GridBagConstraints k = new GridBagConstraints();
-            k.anchor = GridBagConstraints.WEST;
-            k.gridx = 0;
-            k.gridy = i + 1;
-            contentPannel.add(State.checks.get(i), k);
-        }
+        displayCheckboxItems();
 
         //submit action
         paneButtonMain.addActionListener(new ActionListener() {
@@ -54,13 +48,7 @@ public class CheckBoxPane extends JComponent {
 
                 //ubacuj u array hostnameove
                 dial.setVisible(true);
-                for(int i = 0; i < State.checks.size(); i++){
-                    GridBagConstraints k = new GridBagConstraints();
-                    k.anchor = GridBagConstraints.WEST;
-                    k.gridx = 0;
-                    k.gridy = i + 1;
-                    contentPannel.add(State.checks.get(i), k);
-                }
+                displayCheckboxItems();
                 buttonContraints.gridy += 1;
                 contentPannel.add(paneButtonMain,buttonContraints);
 
@@ -73,7 +61,15 @@ public class CheckBoxPane extends JComponent {
 
     }
 
-
+    private void displayCheckboxItems(){
+        for(int i = 0; i < State.checks.size(); i++){
+            GridBagConstraints k = new GridBagConstraints();
+            k.anchor = GridBagConstraints.WEST;
+            k.gridx = 0;
+            k.gridy = i + 1;
+            contentPannel.add(State.checks.get(i), k);
+        }
+    }
 
 
     public JButton getPaneButtonMain() {
