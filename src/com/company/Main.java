@@ -3,8 +3,11 @@ package com.company;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class Main {
+
 
     public static void main(String[] args){
 
@@ -40,5 +43,12 @@ State.loadState();
         contentPanel.add(inputPanel, inputPaneConstraints);
         frame.setContentPane(contentPanel);
         frame.setVisible(true);
+        frame.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                frame.dispose();
+            }
+        });
+
     }
+
 }
