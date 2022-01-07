@@ -45,20 +45,16 @@ public class CheckBoxPane extends JComponent {
         paneButtonMain.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                //ubacuj u array hostnameove
                 dial.setVisible(true);
                 displayCheckboxItems();
-                buttonContraints.gridy += 1;
+                // set the "Add new host" button position to be hosts count + 1
+                buttonContraints.gridy = State.checks.size() + 1;
                 contentPannel.add(paneButtonMain,buttonContraints);
-
                 contentPannel.revalidate();
                 contentPannel.repaint();
 
             }
         });
-
-
     }
 
     private void displayCheckboxItems(){
