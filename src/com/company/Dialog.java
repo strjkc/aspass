@@ -15,7 +15,7 @@ public class Dialog extends JDialog {
     public Dialog(JFrame frame){
         modalDialog = new JDialog(frame, "Add host",
                 Dialog.ModalityType.DOCUMENT_MODAL);
-        modalDialog.setBounds(132, 132, 300, 200);
+        modalDialog.setBounds(132, 132, 300, 300);
         JPanel panel1 = new JPanel();
         panel1.setBorder(new EmptyBorder(0,40,0,40));
         GridBagLayout gblContentPane = new GridBagLayout();
