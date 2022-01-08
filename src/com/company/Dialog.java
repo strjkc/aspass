@@ -20,14 +20,19 @@ public class Dialog extends JDialog {
         panel1.setBorder(new EmptyBorder(0,40,0,40));
         GridBagLayout gblContentPane = new GridBagLayout();
         gblContentPane.columnWidths = new int[]{100};
-        gblContentPane.rowHeights = new int[]{30, 30, 30};
-        gblContentPane.columnWeights = new double[]{1.0, Double.MIN_VALUE};
-        gblContentPane.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
+        gblContentPane.rowHeights = new int[]{30, 30, 30, 30};
+        gblContentPane.columnWeights = new double[]{0.0, Double.MIN_VALUE};
+        gblContentPane.rowWeights = new double[]{0.0, 0.0, 0.0,0.0, Double.MIN_VALUE};
         panel1.setLayout(gblContentPane);
 
-        dialogField = new TextField("Enter host name:", 0, 0, GridBagConstraints.LINE_START, false);
+        dialogField = new TextField("Enter host name:", 0, 1, GridBagConstraints.LINE_START, false);
         JButton addHost = new JButton("Add");
-        GridBagConstraints buttonConstraints = new CustomGridbag(0, 2, GridBagConstraints.CENTER).getContraints();
+        GridBagConstraints buttonConstraints = new CustomGridbag(0, 3, GridBagConstraints.CENTER).getContraints();
+
+        DialogHostPane dial = new DialogHostPane();
+        CustomGridbag grid = new CustomGridbag(0,0, GridBagConstraints.WEST);
+        panel1.add(dial.panel1, grid.getContraints());
+
 
         panel1.add(addHost, buttonConstraints);
         panel1.add(dialogField.getLabel(), dialogField.getLabelConstraints());
