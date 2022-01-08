@@ -13,7 +13,7 @@ public class Dialog extends JDialog {
     private TextField dialogField;
 
     public Dialog(JFrame frame){
-        modalDialog = new JDialog(frame, "Editgit  host",
+        modalDialog = new JDialog(frame, "Edit it  host",
                 Dialog.ModalityType.DOCUMENT_MODAL);
         modalDialog.setBounds(132, 132, 300, 300);
         JPanel panel1 = new JPanel();
