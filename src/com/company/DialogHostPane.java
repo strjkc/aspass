@@ -16,11 +16,13 @@ public class DialogHostPane {
         gblContentPane.rowWeights = new double[]{0.0, 0.0, 0.0, Double.MIN_VALUE};
         panel1.setLayout(gblContentPane);
 
-        JButton button = new JButton("Delete");
-        CustomGridbag buttonGrid = new CustomGridbag(0,0, GridBagConstraints.FIRST_LINE_START);
-        JLabel host = new JLabel("Hostname");
-        CustomGridbag labelGrid = new CustomGridbag(1,0, GridBagConstraints.WEST);
-        panel1.add(host, buttonGrid.getContraints());
-        panel1.add(button, labelGrid.getContraints());
+        for(int i = 0; i < State.checks.size(); i++) {
+            JButton button = new JButton("Delete");
+            CustomGridbag buttonGrid = new CustomGridbag(0, i, GridBagConstraints.FIRST_LINE_START);
+            JLabel host = new JLabel(State.checks.get(i).getText());
+            CustomGridbag labelGrid = new CustomGridbag(1, i, GridBagConstraints.WEST);
+            panel1.add(host, buttonGrid.getContraints());
+            panel1.add(button, labelGrid.getContraints());
+        }
     }
 }
