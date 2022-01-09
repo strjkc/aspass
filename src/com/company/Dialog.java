@@ -44,7 +44,8 @@ public class Dialog extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 addElement();
                 modalDialog.setVisible(false);
-                modalDialog.dispose();
+                modalDialog.revalidate();
+                dial.initHosts();
             }
         });
     }
