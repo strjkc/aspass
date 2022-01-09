@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class TextField extends JComponent {
     private JLabel label;
-    public JTextField inputField;
+    private JTextField inputField;
     private GridBagConstraints labelConstraints;
     private GridBagConstraints inputFieldContraints;
 
@@ -65,5 +65,9 @@ public class TextField extends JComponent {
 
     public GridBagConstraints getInputFieldContraints() {
         return inputFieldContraints;
+    }
+
+    public void setInputField(String text) {
+        this.inputField.setText(text);
     }
 }

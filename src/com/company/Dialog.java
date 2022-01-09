@@ -46,6 +46,7 @@ public class Dialog extends JDialog {
                 modalDialog.setVisible(false);
                 modalDialog.revalidate();
                 dial.initHosts();
+                dialogField.setInputField("");
             }
         });
     }
