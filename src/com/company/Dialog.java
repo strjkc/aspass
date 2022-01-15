@@ -11,11 +11,12 @@ import java.io.FileWriter;
 public class Dialog extends JDialog {
     private JDialog modalDialog;
     private TextField dialogField;
+    private DialogHostPane dial;
 
     public Dialog(JFrame frame){
-        modalDialog = new JDialog(frame, "Edit hosts",
+        super(frame, "Edit hosts",
                 Dialog.ModalityType.DOCUMENT_MODAL);
-        modalDialog.setBounds(132, 132, 300, 300);
+        this.setBounds(132, 132, 300, 300);
         JPanel panel1 = new JPanel();
         panel1.setBorder(new EmptyBorder(0,40,0,40));
         GridBagLayout gblContentPane = new GridBagLayout();
@@ -29,48 +30,41 @@ public class Dialog extends JDialog {
         JButton addHost = new JButton("Add");
         GridBagConstraints buttonConstraints = new CustomGridbag(0, 3, GridBagConstraints.CENTER).getContraints();
 
-        DialogHostPane dial = new DialogHostPane();
+        dial = new DialogHostPane();
         CustomGridbag grid = new CustomGridbag(0,0, GridBagConstraints.WEST);
         panel1.add(dial.panel1, grid.getContraints());
-
 
         panel1.add(addHost, buttonConstraints);
         panel1.add(dialogField.getLabel(), dialogField.getLabelConstraints());
         panel1.add(dialogField.getInputField(), dialogField.getInputFieldContraints());
-        modalDialog.setContentPane(panel1);
+        setContentPane(panel1);
 
         addHost.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 addElement();
-                modalDialog.setVisible(false);
-                modalDialog.revalidate();
-                dial.initHosts();
+                setVisible(false);
+                dispose();
                 dialogField.setInputField("");
             }
         });
     }
 
+    public void refreshDialogPane(){
+        dial.initHosts();
+        revalidate();
+        repaint();
+    }
+
     public void addElement(){
         JCheckBox box = new JCheckBox(dialogField.getInputField().getText());
         State.checks.add(box);
-        writeToFile(box.getText());
+        //State.writeToFile(box.getText());
     }
 
     public JDialog getModalDialog() {
         return modalDialog;
     }
 
-    public void writeToFile(String host){
-        try {
-            File file = new File("hosts.txt");
-            FileWriter fileWriter = new FileWriter("hosts.txt", true);
 
-            file.createNewFile();
-            fileWriter.append(host + ",");
-            fileWriter.close();
-        }catch(Exception e){
-            System.out.println(e);
-        }
-    }
 }

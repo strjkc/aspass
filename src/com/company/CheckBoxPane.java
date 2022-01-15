@@ -13,15 +13,15 @@ public class CheckBoxPane extends JComponent {
     JLabel paneTitle;
     GridBagConstraints titleContraint;
     JPanel contentPannel;
-
+    Dialog dial;
     public JPanel getContentPannel() {
         return contentPannel;
     }
 
     GridBagConstraints buttonContraints;
-    public CheckBoxPane(String paneTitle, String mainButtonTitle, JDialog dial){
+    public CheckBoxPane(String paneTitle, String mainButtonTitle, Dialog dial){
         contentPannel = new JPanel();
-
+        this.dial = dial;
         //top 20 je hak da bude u ravni sa prvim input poljem, popraviti.
         contentPannel.setBorder(new EmptyBorder(0,0,0,0));
         GridBagLayout gblContentPane = new GridBagLayout();
@@ -47,11 +47,13 @@ public class CheckBoxPane extends JComponent {
             public void actionPerformed(ActionEvent e) {
 
                 //ubacuj u array hostnameove
+
+                dial.refreshDialogPane();
                 dial.setVisible(true);
                 displayCheckboxItems();
-                buttonContraints.gridy += 1;
+                buttonContraints.gridy = State.checks.size() + 1;
                 contentPannel.add(paneButtonMain,buttonContraints);
-
+                
                 contentPannel.revalidate();
                 contentPannel.repaint();
 
