@@ -3,8 +3,7 @@ package com.company;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 import java.io.File;
 import java.io.FileWriter;
 
@@ -12,10 +11,11 @@ public class Dialog extends JDialog {
     private JDialog modalDialog;
     private TextField dialogField;
     private DialogHostPane dial;
-
-    public Dialog(JFrame frame){
+    private CheckBoxPane checkboxPanePanel;
+    public Dialog(JFrame frame, CheckBoxPane checkboxPanePanel){
         super(frame, "Edit hosts",
                 Dialog.ModalityType.DOCUMENT_MODAL);
+        this.checkboxPanePanel = checkboxPanePanel;
         this.setBounds(132, 132, 300, 300);
         JPanel panel1 = new JPanel();
         panel1.setBorder(new EmptyBorder(0,40,0,40));
@@ -46,6 +46,12 @@ public class Dialog extends JDialog {
                 setVisible(false);
                 dispose();
                 dialogField.setInputField("");
+            }
+        });
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                checkboxPanePanel.displayCheckboxItems();
+
             }
         });
     }

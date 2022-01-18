@@ -31,8 +31,8 @@ State.loadState();
                 .getContraints();
 
         //Get panels from child objects
-        Dialog hostModal = new Dialog(frame);
-        JPanel checkBoxPanePanel = new CheckBoxPane("Available Hosts: ", "Edit Hosts", hostModal)
+        //Dialog hostModal = new Dialog(frame, checkboxPanePanel);
+        JPanel checkBoxPanePanel = new CheckBoxPane("Available Hosts: ", "Edit Hosts", frame)
                 .getContentPannel();
         JPanel inputPanel = new InputPane()
                 .getContentPannel();
