@@ -37,7 +37,7 @@ public class CheckBoxPane extends JComponent {
         titleContraint = new CustomGridbag(0,0, GridBagConstraints.FIRST_LINE_START)
                 .getContraints();
         contentPannel.add(this.paneTitle, titleContraint);
-        paneButtonMain = new JButton("Add new host");
+        paneButtonMain = new JButton("Edit hosts");
         buttonContraints = new CustomGridbag(0, State.checks.size() + 1, GridBagConstraints.CENTER)
                 .getContraints();
         contentPannel.add(paneButtonMain,buttonContraints);
@@ -47,9 +47,6 @@ public class CheckBoxPane extends JComponent {
         paneButtonMain.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                //ubacuj u array hostnameove
-
                 dial.refreshDialogPane();
                 dial.setVisible(true);
                 displayCheckboxItems();
@@ -67,6 +64,7 @@ public class CheckBoxPane extends JComponent {
 
     public void displayCheckboxItems(){
         contentPannel.removeAll();
+        contentPannel.add(paneTitle, titleContraint);
         for(int i = 0; i < State.checks.size(); i++){
             GridBagConstraints k = new GridBagConstraints();
             k.anchor = GridBagConstraints.WEST;

@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 public class InputPane extends JComponent {
    private JPanel contentPannel;
+   public String response;
 
     public JPanel getContentPannel() {
         return contentPannel;
@@ -22,6 +23,8 @@ public class InputPane extends JComponent {
         gblContentPane.columnWeights = new double[]{1.0, Double.MIN_VALUE};
         gblContentPane.rowWeights = new double[]{0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0, Double.MIN_VALUE};
         contentPannel.setLayout(gblContentPane);
+        response = "";
+
 
         //The first element has FIRST_LINE_START anchor only su it aligns with the cb pane while maintaining good spacing
         TextField usernameTextField = new TextField("Username:", 0, 0, GridBagConstraints.FIRST_LINE_START, false);
@@ -47,6 +50,10 @@ public class InputPane extends JComponent {
         y.gridx = 0;
         y.gridy = 8;
         contentPannel.add(btn, y);
+        JTextArea messageLabel = new JTextArea(response);
+
+        GridBagConstraints labelConstraints = new CustomGridbag(0, 9, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL)
+                .getContraints();
 
         btn.addActionListener(new ActionListener() {
             @Override
@@ -63,9 +70,15 @@ public class InputPane extends JComponent {
                     for(int i = 0; i < State.checks.size(); i++){
                         if(State.checks.get(i).isSelected()){
                             //connect to AS for each host in state
-                            AS400Utils.changeAsPass(State.checks.get(i).getText(), uname, pass, newPass);
+                            response = AS400Utils.changeAsPass(State.checks.get(i).getText(), uname, pass, newPass);
+                            messageLabel.append(response);
                         }
                     }
+                    contentPannel.add(messageLabel, labelConstraints);
+                    contentPannel.revalidate();
+                    contentPannel.repaint();
+                    System.out.println(response);
+                    response = "";
                 }
             }
         });

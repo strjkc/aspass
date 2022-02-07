@@ -38,6 +38,7 @@ State.loadState();
                 .getContentPannel();
 
 
+
         contentPanel.add(checkBoxPanePanel, checkboxPaneConstraints);
         contentPanel.add(inputPanel, inputPaneConstraints);
         frame.setContentPane(contentPanel);
