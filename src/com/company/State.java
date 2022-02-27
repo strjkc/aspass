@@ -8,9 +8,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class State {
-    public static List<JCheckBox> checks = new ArrayList<JCheckBox>();
+    private List<JCheckBox> checks = new ArrayList<JCheckBox>();
+    private static State state = new State();
 
-    public static void loadState(){
+    public static State getState() {
+        return state;
+    }
+
+    public List<JCheckBox> getChecks() {
+        return checks;
+    }
+
+
+    public void setChecks(List<JCheckBox> checks) {
+        this.checks = checks;
+    }
+//TODO write to state metod
+
+    private State(){};
+
+    public void loadState(){
         try {
             FileReader fileReader = new FileReader("hosts.txt");
             int a;
@@ -33,7 +50,7 @@ public class State {
         }
     }
 
-    public static void writeToFile(){
+    public void writeToFile(){
         try {
             File file = new File("hosts.txt");
             file.delete();
