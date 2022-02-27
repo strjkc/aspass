@@ -1,11 +1,18 @@
 package com.company;
 
 import com.ibm.as400.access.AS400;
-import com.ibm.as400.access.CommandCall;
 
 public class AS400Utils {
-    public static String responseMessage = "";
-    public static String changeAsPass(String host, String uname, String loginPass, String newPass){
+
+    private static AS400Utils utils = new AS400Utils();
+    public String responseMessage = "";
+
+    public static AS400Utils getUtils() {
+        return utils;
+    }
+
+    private AS400Utils(){}
+    public String changeAsPass(String host, String uname, String loginPass, String newPass){
         try {
             AS400 newCon = new AS400(host, uname, loginPass);
             newCon.changePassword(loginPass, newPass);
