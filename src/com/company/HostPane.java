@@ -7,7 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-public class CheckBoxPane extends JPanel {
+public class HostPane extends JPanel {
 
     private JButton paneButtonMain;
     private JLabel paneTitle;
@@ -21,7 +21,7 @@ public class CheckBoxPane extends JPanel {
 
     private List<JCheckBox> arrayState = State.getState().getChecks();
 
-    public CheckBoxPane(String paneTitle, String mainButtonTitle){
+    public HostPane(String paneTitle, String mainButtonTitle){
 
         setBorder(new EmptyBorder(0,0,0,0));
         GridBagLayout gblContentPane = new GridBagLayout();
