@@ -5,92 +5,62 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.List;
 
-public class CheckBoxPane extends JComponent {
-    JButton paneButtonMain;
-    JLabel paneTitle;
-    GridBagConstraints titleContraint;
-    JPanel contentPannel;
-    Dialog dial;
-    JFrame frame;
-    public JPanel getContentPannel() {
-        return contentPannel;
+public class CheckBoxPane extends JPanel {
+
+    private JButton paneButtonMain;
+    private JLabel paneTitle;
+    private CustomGridbag titleContraint;
+    private Dialog dial;
+    private CustomGridbag buttonContraints;
+
+    public void setDial(Dialog dial) {
+        this.dial = dial;
     }
 
-    GridBagConstraints buttonContraints;
-    public CheckBoxPane(String paneTitle, String mainButtonTitle, JFrame frame){
-        contentPannel = new JPanel();
-        this.dial = new Dialog(frame, this);
-        this.frame = frame;
-        //top 20 je hak da bude u ravni sa prvim input poljem, popraviti.
-        contentPannel.setBorder(new EmptyBorder(0,0,0,0));
+    private List<JCheckBox> arrayState = State.getState().getChecks();
+
+    public CheckBoxPane(String paneTitle, String mainButtonTitle){
+
+        setBorder(new EmptyBorder(0,0,0,0));
         GridBagLayout gblContentPane = new GridBagLayout();
         gblContentPane.columnWidths = new int[]{100};
         gblContentPane.rowHeights = new int[]{30, 30, 30, 30, 30, 30, 30, 30, 30};
         gblContentPane.columnWeights = new double[]{0.0, Double.MIN_VALUE};
         gblContentPane.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-        contentPannel.setLayout(gblContentPane);
+        setLayout(gblContentPane);
 
         this.paneTitle = new JLabel(paneTitle);
-        titleContraint = new CustomGridbag(0,0, GridBagConstraints.FIRST_LINE_START)
-                .getContraints();
-        contentPannel.add(this.paneTitle, titleContraint);
-        paneButtonMain = new JButton("Edit hosts");
-        buttonContraints = new CustomGridbag(0, State.checks.size() + 1, GridBagConstraints.CENTER)
-                .getContraints();
-        contentPannel.add(paneButtonMain,buttonContraints);
+        paneButtonMain = new JButton(mainButtonTitle);
+
+        titleContraint = new CustomGridbag(0,0, GridBagConstraints.FIRST_LINE_START);
+        buttonContraints = new CustomGridbag(0, arrayState.size() + 1, GridBagConstraints.CENTER);
+
         displayCheckboxItems();
 
-        //submit action
         paneButtonMain.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dial.refreshDialogPane();
                 dial.setVisible(true);
-                displayCheckboxItems();
-                buttonContraints.gridy = State.checks.size() + 1;
-                contentPannel.add(paneButtonMain,buttonContraints);
-                
-                contentPannel.revalidate();
-                contentPannel.repaint();
-
             }
         });
-
-
     }
 
     public void displayCheckboxItems(){
-        contentPannel.removeAll();
-        contentPannel.add(paneTitle, titleContraint);
-        for(int i = 0; i < State.checks.size(); i++){
+        removeAll();
+        for(int i = 0; i < arrayState.size(); i++){
             GridBagConstraints k = new GridBagConstraints();
             k.anchor = GridBagConstraints.WEST;
             k.gridx = 0;
             k.gridy = i + 1;
-            contentPannel.add(State.checks.get(i), k);
+            add(arrayState.get(i), k);
         }
-        contentPannel.add(paneButtonMain,buttonContraints);
+        buttonContraints.gridy = State.getState().getChecks().size() + 1;
+        add(paneTitle, titleContraint);
+        add(paneButtonMain,buttonContraints);
         revalidate();
         repaint();
-    }
-
-
-    public JButton getPaneButtonMain() {
-        return paneButtonMain;
-    }
-
-    public JLabel getPaneTitle() {
-        return paneTitle;
-    }
-
-    public GridBagConstraints getTitleContraint() {
-        return titleContraint;
-    }
-
-    public GridBagConstraints getButtonContraints() {
-        return buttonContraints;
     }
 }

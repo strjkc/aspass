@@ -3,6 +3,8 @@ package com.company;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -13,7 +15,7 @@ public class Main {
 
         //Setup frame and parent layout
         JFrame frame = new JFrame("Password manager");
-        frame.setBounds(400, 200, 600, 400);
+        frame.setBounds(400, 200, 700, 400);
         JPanel contentPanel = new JPanel();
         contentPanel.setBorder(new EmptyBorder(20,40,20,40));
         GridBagLayout gblContentPane = new GridBagLayout();
@@ -22,20 +24,18 @@ public class Main {
         gblContentPane.columnWeights = new double[]{0.4, 1.0, Double.MIN_VALUE};
         gblContentPane.rowWeights = new double[]{1.0, Double.MIN_VALUE};
         contentPanel.setLayout(gblContentPane);
-State.loadState();
-        //setup constraints for child elements in parent
-        GridBagConstraints checkboxPaneConstraints = new CustomGridbag(0,0, GridBagConstraints.FIRST_LINE_START)
-                .getContraints();
+        State state = State.getState();
 
-        GridBagConstraints inputPaneConstraints = new CustomGridbag(1, 0, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL)
-                .getContraints();
+        //setup constraints for child elements in parent
+        CustomGridbag checkboxPaneConstraints = new CustomGridbag(0,0, GridBagConstraints.FIRST_LINE_START);
+        CustomGridbag inputPaneConstraints = new CustomGridbag(1, 0, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL);
 
         //Get panels from child objects
         //Dialog hostModal = new Dialog(frame, checkboxPanePanel);
-        JPanel checkBoxPanePanel = new CheckBoxPane("Available Hosts: ", "Edit Hosts", frame)
-                .getContentPannel();
-        JPanel inputPanel = new InputPane()
-                .getContentPannel();
+        CheckBoxPane checkBoxPanePanel = new CheckBoxPane("Available Hosts: ", "Edit Hosts");
+        InputPane inputPanel = new InputPane();
+        Dialog dialog = new Dialog(frame, checkBoxPanePanel);
+        checkBoxPanePanel.setDial(dialog);
 
 
 
@@ -45,7 +45,7 @@ State.loadState();
         frame.setVisible(true);
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-                State.writeToFile();
+                state.writeToFile();
                 frame.dispose();
             }
         });

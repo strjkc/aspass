@@ -4,14 +4,15 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.io.FileWriter;
+import java.util.List;
 
 public class Dialog extends JDialog {
-    private JDialog modalDialog;
     private TextField dialogField;
     private DialogHostPane dial;
     private CheckBoxPane checkboxPanePanel;
+    private State state = State.getState();
+    private List<JCheckBox> checkBoxList = state.getChecks();
+
     public Dialog(JFrame frame, CheckBoxPane checkboxPanePanel){
         super(frame, "Edit hosts",
                 Dialog.ModalityType.DOCUMENT_MODAL);
@@ -28,11 +29,11 @@ public class Dialog extends JDialog {
 
         dialogField = new TextField("Enter host name:", 0, 1, GridBagConstraints.LINE_START, false);
         JButton addHost = new JButton("Add");
-        GridBagConstraints buttonConstraints = new CustomGridbag(0, 3, GridBagConstraints.CENTER).getContraints();
+        CustomGridbag buttonConstraints = new CustomGridbag(0, 3, GridBagConstraints.CENTER);
 
         dial = new DialogHostPane();
         CustomGridbag grid = new CustomGridbag(0,0, GridBagConstraints.WEST);
-        panel1.add(dial.panel1, grid.getContraints());
+        panel1.add(dial.panel1, grid);
 
         panel1.add(addHost, buttonConstraints);
         panel1.add(dialogField.getLabel(), dialogField.getLabelConstraints());
@@ -49,7 +50,7 @@ public class Dialog extends JDialog {
             }
         });
         addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
+            public void windowDeactivated(WindowEvent e) {
                 checkboxPanePanel.displayCheckboxItems();
 
             }
@@ -64,13 +65,7 @@ public class Dialog extends JDialog {
 
     public void addElement(){
         JCheckBox box = new JCheckBox(dialogField.getInputField().getText());
-        State.checks.add(box);
+        checkBoxList.add(box);
         //State.writeToFile(box.getText());
     }
-
-    public JDialog getModalDialog() {
-        return modalDialog;
-    }
-
-
 }
