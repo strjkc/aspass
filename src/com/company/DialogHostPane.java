@@ -24,32 +24,40 @@ public class DialogHostPane extends JPanel {
 
         title = new JLabel("Available hosts:");
         titleGrid = new CustomGridbag(0, 0, GridBagConstraints.FIRST_LINE_START);
+        titleGrid.insets = new Insets(0, 0, 10, 0);
         initHosts();
     }
 
     public void initHosts(){
         removeAll();
         add(title, titleGrid);
+        if (checkBoxList.size() == 0){
+            JLabel host = new JLabel("No hosts available");
+            host.setForeground(Color.gray);
+            CustomGridbag labelGrid = new CustomGridbag(0, 1, GridBagConstraints.WEST);
+            add(host, labelGrid);
+        }else {
+            for (int i = getComponents().length / 2; i < checkBoxList.size(); i++) {
+                JLabel host = new JLabel(checkBoxList.get(i).getText());
+                JButton button = new JButton("Delete");
+                CustomGridbag labelGrid = new CustomGridbag(1, i + 1, GridBagConstraints.WEST);
+                CustomGridbag buttonGrid = new CustomGridbag(0, i + 1, GridBagConstraints.WEST);
+                add(host, buttonGrid);
+                add(button, labelGrid);
 
-        for(int i = getComponents().length/2; i < checkBoxList.size(); i++) {
-            JLabel host = new JLabel(checkBoxList.get(i).getText());
-            JButton button = new JButton("Delete");
-            CustomGridbag buttonGrid = new CustomGridbag(0, i + 1, GridBagConstraints.WEST);
-            CustomGridbag labelGrid = new CustomGridbag(1, i + 1, GridBagConstraints.WEST);
-            add(button, labelGrid);
-            add(host, buttonGrid);
-
-            button.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    System.out.println("Removig host: " + host.getText());
-                    remove(host);
-                    remove(button);
-                    checkBoxList.removeIf(item -> item.getText().equals(host.getText()));
-                    revalidate();
-                    repaint();
-                }
-            });
+                button.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        System.out.println("Removig host: " + host.getText());
+                        remove(host);
+                        remove(button);
+                        checkBoxList.removeIf(item -> item.getText().equals(host.getText()));
+                        initHosts();
+                        revalidate();
+                        repaint();
+                    }
+                });
+            }
         }
     }
 }

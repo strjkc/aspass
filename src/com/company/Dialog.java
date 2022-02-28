@@ -29,7 +29,7 @@ public class Dialog extends JDialog {
         JButton addHost = new JButton("Add");
 
         CustomGridbag dialogHostPaneConstraint = new CustomGridbag(0,0, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.VERTICAL );
-        dialogHostPaneConstraint.insets = new Insets(0,0,50,0);
+        dialogHostPaneConstraint.insets = new Insets(0,0,10,0);
         CustomGridbag dialogFieldConstraints = new CustomGridbag(0,1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL);
         dialogFieldConstraints.insets = new Insets(0,0,0,0);
         CustomGridbag buttonConstraints = new CustomGridbag(0, 2, GridBagConstraints.CENTER);
