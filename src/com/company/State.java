@@ -54,8 +54,10 @@ public class State {
         try {
             File file = new File("hosts.txt");
             file.delete();
+            if (file.exists()){
+                file.createNewFile();
+            }
             FileWriter fileWriter = new FileWriter("hosts.txt", true);
-            file.createNewFile();
             for(int i = 0; i < checks.size(); i++){
                 fileWriter.append(checks.get(i).getText() + ",");
             }
