@@ -10,7 +10,6 @@ import com.company.AS400Utils;
 
 public class InputPane extends JPanel {
 
-   public String response;
    private State state = State.getState();
    private List<JCheckBox> checkBoxList = state.getChecks();
    private AS400Utils utils = AS400Utils.getUtils();
@@ -25,7 +24,6 @@ public class InputPane extends JPanel {
         gblContentPane.columnWeights = new double[]{1.0, Double.MIN_VALUE};
         gblContentPane.rowWeights = new double[]{1.0, Double.MIN_VALUE};
         setLayout(gblContentPane);
-        response = "";
 
         InputField usernameInputField = new InputField("Username", false);
         InputField currentPasswordField = new InputField("Current password", true);
@@ -43,7 +41,6 @@ public class InputPane extends JPanel {
         add(newPasswordFieldRepeat, newPasswordRepeatConstraints);
 
         JButton btn = new JButton("Change Password");
-        JTextArea messageLabel = new JTextArea(response);
 
         CustomGridbag buttonConstraints = new CustomGridbag(0, 4, GridBagConstraints.CENTER);
         CustomGridbag labelConstraints = new CustomGridbag(0, 5, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL);
@@ -69,15 +66,12 @@ public class InputPane extends JPanel {
                     for(int i = 0; i < checkBoxList.size(); i++){
                         if(checkBoxList.get(i).isSelected()){
                             //connect to AS for each host in state
-                            response = utils.changeAsPass(checkBoxList.get(i).getText(), uname, pass, newPass);
-                            messageLabel.append(response);
+                            utils.changeAsPass(checkBoxList.get(i).getText(), uname, pass, newPass);
                         }
                     }
-                    add(messageLabel, labelConstraints);
+                    LogPanel.printLog();
                     revalidate();
                     repaint();
-                    System.out.println(response);
-                    response = "";
                 }
             }
         });

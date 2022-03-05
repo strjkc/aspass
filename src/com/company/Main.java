@@ -28,15 +28,19 @@ public class Main {
         //setup constraints for child elements in parent
         CustomGridbag checkboxPaneConstraints = new CustomGridbag(0,0, GridBagConstraints.FIRST_LINE_START);
         CustomGridbag inputPaneConstraints = new CustomGridbag(1, 0, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL);
+        CustomGridbag logPanelConstraints = new CustomGridbag(0,1, GridBagConstraints.FIRST_LINE_START);
 
         //Get panels from child objects
         HostPane checkBoxPanePanel = new HostPane("Available Hosts: ", "Edit Hosts");
         InputPane inputPanel = new InputPane();
         Dialog dialog = new Dialog(frame, checkBoxPanePanel);
         checkBoxPanePanel.setDial(dialog);
+        LogPanel logPanel = new LogPanel();
+
 
         contentPanel.add(checkBoxPanePanel, checkboxPaneConstraints);
         contentPanel.add(inputPanel, inputPaneConstraints);
+        contentPanel.add(logPanel, logPanelConstraints);
         frame.setContentPane(contentPanel);
         frame.setVisible(true);
         frame.addWindowListener(new WindowAdapter() {
