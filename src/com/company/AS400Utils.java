@@ -5,22 +5,20 @@ import com.ibm.as400.access.AS400;
 public class AS400Utils {
 
     private static AS400Utils utils = new AS400Utils();
-    public String responseMessage = "";
-
+    private Log log = Log.getLog();
     public static AS400Utils getUtils() {
         return utils;
     }
 
     private AS400Utils(){}
-    public String changeAsPass(String host, String uname, String loginPass, String newPass){
+    public void changeAsPass(String host, String uname, String loginPass, String newPass){
         try {
             AS400 newCon = new AS400(host, uname, loginPass);
             newCon.changePassword(loginPass, newPass);
-            responseMessage = host + "changed successfully \n";
+            log.setLogMessages(host + "changed successfully");
         }catch (Exception e) {
-            responseMessage = "ERROR on " + host + " " + e.getLocalizedMessage() + "\n";
+            log.setLogMessages("ERROR on " + host + " " + e.getLocalizedMessage());
             e.printStackTrace();
         }
-        return responseMessage;
     }
 }
