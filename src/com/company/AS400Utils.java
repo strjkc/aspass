@@ -15,9 +15,9 @@ public class AS400Utils {
         try {
             AS400 newCon = new AS400(host, uname, loginPass);
             newCon.changePassword(loginPass, newPass);
-            log.setLogMessages(host + "changed successfully");
+            log.addLogMessage(host + " password changed successfully");
         }catch (Exception e) {
-            log.setLogMessages("ERROR on " + host + " " + e.getLocalizedMessage());
+            log.addLogMessage("ERROR: " + host + " " + e.getLocalizedMessage());
             e.printStackTrace();
         }
     }

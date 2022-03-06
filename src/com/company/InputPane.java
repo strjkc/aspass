@@ -11,6 +11,7 @@ import com.company.AS400Utils;
 public class InputPane extends JPanel {
 
    private State state = State.getState();
+   private Log log = Log.getLog();
    private List<JCheckBox> checkBoxList = state.getChecks();
    private AS400Utils utils = AS400Utils.getUtils();
 
@@ -20,7 +21,7 @@ public class InputPane extends JPanel {
         setBorder(new EmptyBorder(0,0,0,0));
         GridBagLayout gblContentPane = new GridBagLayout();
         gblContentPane.columnWidths = new int[]{100};
-        gblContentPane.rowHeights = new int[]{50,50,50,50, 50, 50};
+        gblContentPane.rowHeights = new int[]{50,50,50,50, 50};
         gblContentPane.columnWeights = new double[]{1.0, Double.MIN_VALUE};
         gblContentPane.rowWeights = new double[]{1.0, Double.MIN_VALUE};
         setLayout(gblContentPane);
@@ -51,16 +52,15 @@ public class InputPane extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String uname = usernameInputField.getTextField().getText().trim();
-
                 String pass = currentPasswordField.getTextField().getText().trim();
                 String newPass = newPasswordField.getTextField().getText().trim();
                 String repeatedPass = newPasswordFieldRepeat.getTextField().getText().trim();
 
                 int isInputValid = checkInput(uname, pass, newPass, repeatedPass);
                 if(isInputValid == -1){
-                    System.out.println("Input fields can not be empty");
+                    log.addLogMessage("ERROR: Input fields can not be empty");
                 }else if (isInputValid == -2){
-                    System.out.println("Passwords don't match");
+                    log.addLogMessage("ERROR: Passwords don't match");
                 }else {
                     //get all checked boxes
                     for(int i = 0; i < checkBoxList.size(); i++){
@@ -69,10 +69,10 @@ public class InputPane extends JPanel {
                             utils.changeAsPass(checkBoxList.get(i).getText(), uname, pass, newPass);
                         }
                     }
-                    LogPanel.printLog();
-                    revalidate();
-                    repaint();
                 }
+                LogPanel.printLog();
+                revalidate();
+                repaint();
             }
         });
     }

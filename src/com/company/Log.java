@@ -16,8 +16,12 @@ public class Log {
         return logMessages;
     }
 
-    public void setLogMessages(String newMessage) {
+    public void addLogMessage(String newMessage) {
         this.logMessages.add(newMessage);
+    }
+
+    public void clearLogMessages(){
+        this.logMessages.clear();
     }
 
 }
