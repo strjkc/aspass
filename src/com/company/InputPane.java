@@ -63,11 +63,16 @@ public class InputPane extends JPanel {
                     log.addLogMessage("ERROR: Passwords don't match");
                 }else {
                     //get all checked boxes
+                    int nonCheckedCounter = 0;
                     for(int i = 0; i < checkBoxList.size(); i++){
                         if(checkBoxList.get(i).isSelected()){
-                            //connect to AS for each host in state
                             utils.changeAsPass(checkBoxList.get(i).getText(), uname, pass, newPass);
+                        }else{
+                            nonCheckedCounter++;
                         }
+                    }
+                    if(nonCheckedCounter == checkBoxList.size()){
+                        log.addLogMessage("ERROR: No hosts selected");
                     }
                 }
                 LogPanel.printLog();
