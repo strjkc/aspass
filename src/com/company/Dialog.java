@@ -20,21 +20,26 @@ public class Dialog extends JDialog {
         this.checkboxPanePanel = mainHostsPane;
         this.setBounds(132, 132, 300, 300);
         JPanel dialogPanel = new JPanel();
-        dialogPanel.setBorder(new EmptyBorder(0,40,0,40));
+        dialogPanel.setBorder(new EmptyBorder(0,10,0,10));
         GridBagLayout gblContentPane = new GridBagLayout();
         dialogPanel.setLayout(gblContentPane);
+        JPanel buttonPannel = new JPanel();
 
         dialogHostPane = new DialogHostPane();
         dialogField = new InputField("Enter host name:", false);
         JButton addHost = new JButton("Add");
-
+        JButton saveHost = new JButton("Save");
         CustomGridbag dialogHostPaneConstraint = new CustomGridbag(0,0, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.VERTICAL );
         dialogHostPaneConstraint.insets = new Insets(0,0,0,0);
         CustomGridbag dialogFieldConstraints = new CustomGridbag(0,1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL);
-        CustomGridbag buttonConstraints = new CustomGridbag(0, 2, GridBagConstraints.CENTER);
+        CustomGridbag addButtonConstraints = new CustomGridbag(0, 2, GridBagConstraints.EAST);
+        CustomGridbag saveButtonConstraints = new CustomGridbag(1, 2, GridBagConstraints.WEST);
+        CustomGridbag buttonPannelConstraints = new CustomGridbag(0, 2, GridBagConstraints.CENTER);
 
         dialogPanel.add(dialogHostPane, dialogHostPaneConstraint);
-        dialogPanel.add(addHost, buttonConstraints);
+        buttonPannel.add(addHost, addButtonConstraints);
+        buttonPannel.add(saveHost, saveButtonConstraints);
+        dialogPanel.add(buttonPannel, buttonPannelConstraints);
         dialogPanel.add(dialogField, dialogFieldConstraints);
         setContentPane(dialogPanel);
 
@@ -42,11 +47,19 @@ public class Dialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 addElement();
-                setVisible(false);
-                dispose();
                 dialogField.setTextField("");
+                refreshDialogPane();
             }
         });
+
+        saveHost.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                dispose();
+            }
+        });
+
         addWindowListener(new WindowAdapter() {
             public void windowDeactivated(WindowEvent e) {
                 mainHostsPane.displayCheckboxItems();
