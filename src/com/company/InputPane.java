@@ -14,6 +14,10 @@ public class InputPane extends JPanel {
    private Log log = Log.getLog();
    private List<JCheckBox> checkBoxList = state.getChecks();
    private AS400Utils utils = AS400Utils.getUtils();
+   private InputField usernameInputField;
+   private InputField currentPasswordField;
+   private InputField newPasswordField;
+   private InputField newPasswordFieldRepeat;
 
 
     public InputPane(){
@@ -26,10 +30,10 @@ public class InputPane extends JPanel {
         gblContentPane.rowWeights = new double[]{1.0, Double.MIN_VALUE};
         setLayout(gblContentPane);
 
-        InputField usernameInputField = new InputField("Username", false);
-        InputField currentPasswordField = new InputField("Current password", true);
-        InputField newPasswordField = new InputField("New password", true);
-        InputField newPasswordFieldRepeat = new InputField("Repeat new password", true);
+        usernameInputField       =   new InputField("Username", false);
+        currentPasswordField     =   new InputField("Current password", true);
+        newPasswordField         =   new InputField("New password", true);
+        newPasswordFieldRepeat   =   new InputField("Repeat new password", true);
 
         CustomGridbag usernameConstraints = new CustomGridbag(0,0, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL);
         CustomGridbag currentPasswordConstraints = new CustomGridbag(0,1, GridBagConstraints.FIRST_LINE_START, GridBagConstraints.HORIZONTAL);
@@ -75,6 +79,7 @@ public class InputPane extends JPanel {
                         log.addLogMessage("ERROR: No hosts selected");
                     }
                 }
+                resetInputFields();
                 LogPanel.printLog();
                 revalidate();
                 repaint();
@@ -91,6 +96,12 @@ public class InputPane extends JPanel {
             return -2;
         }
         return 1;
+    }
+
+    private void resetInputFields(){
+        currentPasswordField.setTextField("");
+        newPasswordField.setTextField("");
+        newPasswordFieldRepeat.setTextField("");
     }
 
 
